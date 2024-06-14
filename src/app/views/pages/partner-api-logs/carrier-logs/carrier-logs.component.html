@@ -1,0 +1,168 @@
+<div class="row" >
+    <div class="col-md-12 col-xl-12 stretch-card">
+      <!-- first card -->
+      <div class="card ">
+
+        <div class="card-header">
+            <h4>Partner APIs</h4>
+        </div>
+
+        <div class="card-body">
+            <form class="form-group" [formGroup]="dateForm">
+                <div class="row ">
+           <!--API type  -->
+                    <div class="col-16 col-md-3 col-xl-3">
+                        <div class="card col-md-16 col-xl-16"  style = "border: none;box-shadow:none">
+                          <div class="card-body">
+                            <label class="card-title">API</label>
+                            <span style="color: red;">*</span>
+                            
+                            <select    class="form-select form-select-sm mb-3" formControlName = "apiName">
+                              <option value="" selected disabled> Select</option>
+                              <option value="1">API 1</option>
+                              <option value="2">API 2</option>
+                         
+                            
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+           <!--Date Range  -->
+                      <div class="col-16 col-md-6 col-xl-6">
+                          <div class="card" style = "border: none;box-shadow:none">
+                            <div class="card-body">
+                             
+                              <h5 class="card-title">Date Range <span style="color: red;">*</span></h5>
+                              <!-- <span style="color: red;">*</span> -->
+                              <div class="d-flex align-items-center  justify-content-between">
+                                  <div class="input-group append">
+                                      <input class="form-control" placeholder="From date" formControlName ="fromDate"
+                                      ngbDatepicker     #from="ngbDatepicker" >
+                                      <button class="input-group-text" type="button" (click)="from.toggle()">
+                                        <i class="feather icon-calendar icon-md text-muted"></i>
+                                      </button>
+                                    </div>
+                                    <div class="input-group append" style="padding-left: 15px;">
+                                      <input class="form-control" placeholder="Expiration date" formControlName ="toDate"
+                                      ngbDatepicker    #to="ngbDatepicker" >
+                                      <button class="input-group-text" type="button" (click)="to.toggle()">
+                                        <i class="feather icon-calendar icon-md text-muted"></i>
+                                      </button>
+                                    </div>
+                    
+                                           <!-- <button class="btn btn-info mr-1"    (click)="getOrdersBydate()" [disabled] = "!dateForm.valid" style = "margin-left:30px">Generate</button> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+          <!-- Partner type -->
+                        <div class="col-16 col-md-3 col-xl-3">
+                          <div class="card col-md-16 col-xl-16"  style = "border: none;box-shadow:none">
+                            <div class="card-body">
+                              <h5 class="card-title">Partner </h5>
+                              <!-- <span style="color: red;">*</span> -->
+                              
+                              <select class="form-select form-select-sm mb-3" formControlName = "apiName">
+                                <option value="" selected disabled> Select</option>
+                                <option value="1">Partner 1</option>
+                                <option value="2">Partner 2</option>
+                           
+                              
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+           <!--API Result type  -->
+                        <div class="col-16 col-md-2 col-xl-2">
+                          <div class="card col-md-16 col-xl-16"  style = "border: none;box-shadow:none">
+                            <div class="card-body">
+                              <h5 class="card-title">API Result </h5>
+          
+                              
+                              <select class="form-select form-select-sm mb-3" formControlName = "apiName">
+                                <option value="" selected disabled> Select</option>
+                                <option value="1">API 1</option>
+                                <option value="2">API 2</option>
+                           
+                              
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+           <!-- Carrier Transaction Id -->
+                        <div class="col-16 col-md-3 col-xl-3">
+                          <div class="card col-md-16 col-xl-16"  style = "border: none;box-shadow:none">
+                            <div class="card-body">
+                              <h5 class="card-title">Carrier Transaction Id</h5>
+          
+                              <input class = "form-control" placeholder="Partner Transaction Id" formControlName = "poNr">
+                             
+                            </div>
+                          </div>
+                        </div>
+          <!-- ICCID -->
+                        <div class="col-16 col-md-3 col-xl-3">
+                          <div class="card col-md-16 col-xl-16"  style = "border: none;box-shadow:none">
+                            <div class="card-body">
+                              <h5 class="card-title">ICCID</h5>
+          
+                              <input class ="form-control" placeholder="ICCID" formControlName = "poNr">
+                            
+                            </div>
+                          </div>
+                        </div>
+          <!--MSISDN  -->
+                        <div class="col-16 col-md-2 col-xl-2">
+                          <div class="card col-md-16 col-xl-16"  style = "border: none;box-shadow:none">
+                            <div class="card-body">
+                              <h5 class="card-title">MSISDN</h5>
+          
+                              <input class = "form-control" placeholder="MSISDN" formControlName = "poNr">
+                             
+                            </div>
+                          
+                          </div>
+                          <!-- <button class="btn btn-info mr-1"    (click)="getOrdersBydate()" [disabled] = "!dateForm.valid" style = "margin-left:30px">Generate</button> -->
+                        </div>
+           <!--Search Button  -->
+                        <div class="col-16 col-md-2 col-xl-2">
+                          <div class="card col-md-16 col-xl-16"  style = "border: none;box-shadow:none">
+                            <div class="card-body">
+                              
+                              <button class="btn btn-primary mr-1"    (click)="getOrdersBydate()" [disabled] = "!dateForm.valid" style="margin-top: 30px;" >Search</button>
+                            </div>
+                          </div>
+                        </div>       
+               
+            
+                </div>
+              </form>
+<!-- Data after calling Partner API-->
+
+              <div class="table-responsive">
+              
+      
+      
+                <ngx-datatable class="bootstrap" [rows]="rows" [loadingIndicator]="loadingIndicator" id = "excel-table"
+                [columnMode]="ColumnMode.force" [footerHeight]="50" [limit]="10" rowHeight="auto" [scrollbarH]="true">
+      
+              
+                <ngx-datatable-column name="Partner Name" prop="pO_Number"> </ngx-datatable-column>
+                <ngx-datatable-column name="ICCID" prop="masteR_RAD_ID"> </ngx-datatable-column>
+                <ngx-datatable-column name="MSISDN" prop="status"> </ngx-datatable-column>
+           
+      
+                <ngx-datatable-column name="Carrier Transaction ID" prop="pallet_Number"> </ngx-datatable-column>
+                <ngx-datatable-column name="Process Start Date" prop="carton_Number"> </ngx-datatable-column> 
+               <ngx-datatable-column name="Process End Date" prop="skU_Number">  </ngx-datatable-column>
+               <ngx-datatable-column name="Internal Error" prop="imeI_2"> </ngx-datatable-column> 
+              
+                <ngx-datatable-column name="Success" prop="imeI_1"> </ngx-datatable-column>
+                
+              
+              </ngx-datatable>
+              </div>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,94 @@
+<!-- Version 1.0 
+     project name :MVNOC ACP RESELLER PLATFORM
+     filename :login.component.html
+     path :src\app\views\auth\login\
+     purpose: logging in to platform 
+     author: apoorva
+     version history: v1.0 initial version
+ -->
+ <!-- Login code -->
+<div class="row w-75 mx-6 auth-page" >
+    <div class="col-md-6 col-xl-6 mx-auto">
+      <div class="card" style="border-radius: 15px;" >
+
+        <div class="row">
+          <div class="d-flex justify-content-center pe-md-1">
+            <div class="auth-side-wrapper " [ngStyle]="{ 'background-image': 'url(../../../../assets/images/mnvo-connect-logo-stacked-color.svg)'  } " style="height: 150px;width:325px;margin-top: 30px;margin-left:10px ;align-items: center;"  >
+  
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- <div class="col-md-6 pe-md-1">
+            <div class="auth-side-wrapper " [ngStyle]="{ 'background-image': 'url(../../../../assets/images/mnvo-connect-logo-stacked-color.svg)'  } " style="height: 150px;width:325px;margin-top: 60px;margin-right:100px;margin-left:20px"  >
+  
+            </div>
+          </div>  -->
+          <div class="col-md-12 ps-md-4 align-items-center">
+            <div class="auth-form-wrapper px-2 py-5">
+              <!-- <a routerLink="." class="nobleui-logo d-block mb-2">ACP<span> RESELLER</span></a> -->
+              <form class="forms-sample" [formGroup]="loginForm" (ngSubmit)="onSubmit($event)" >
+                <div class="form-group mb-3" >
+                    <!-- <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" 
+                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }" 
+                    [(ngModel)]="user.email" #email="ngModel" name="email"> -->
+
+                    <label for="exampleInputUsername1" class="form-label"   >Username</label>
+                    <span style="color: red;">*</span>
+                    <input   type="text" autocomplete="off" class="form-control " id="exampleInputEmail1"
+                        placeholder="Username" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
+                        formControlName="userName" >
+
+                    <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                        <div *ngIf="f.userName.errors.required">Username is required</div>
+                    </div>
+
+                </div>
+                <div class="form-group mb-3" >
+                    <label for="exampleInputUsername1" class="form-label" >Password</label>
+                    <span style="color: red;">*</span>
+                    <input  type="password" class="form-control" id="examplePassword" placeholder="Password"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                        formControlName="password" >
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                        <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters
+                        </div>
+                    </div>
+                </div>
+              
+                <div>
+                    <div class="text-center py-2">
+                      <div class="d-grid gap-2">
+                  <button type="submit" class="btn btn-primary me-2 mb-2 mb-md-0 d-grid "  >Sign in</button>
+                      </div>
+                  
+                   <a (click)="forgot(approvalModel)" class="d-block mt-3 text-bold">Forgot Password?</a> 
+                  </div>
+               
+            </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<ng-template #approvalModel let-modal>
+  <div class="modal-header">
+  <h5 class="align-items-center" >Please contact your administrator to reset your password</h5>
+  <button type="button" class="btn-close" (click)="modal.close('by: close icon')" data-bs-dismiss="modal" aria-label="btn-close">
+   </button>  
+</div> 
+ 
+   
+</ng-template>
+
+
+<div *ngIf="isLoading" class="text-center">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  </div>

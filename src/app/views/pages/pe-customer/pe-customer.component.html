@@ -1,0 +1,1196 @@
+
+<div class="card overflow-hidden  "  style="border-color:#DDE7EE; border-radius: 15px; width: 1050px; height: fit-content; "   >
+    <div class="card-body">
+        <div class="profile-page tx-11">
+            <div style="display: flex; ">
+                <a *ngIf="showResults" (click)="showResults = false;"><i
+                        data-feather="arrow-left" style="cursor: pointer;" appFeatherIcon></i></a>
+                <h4>Customer Lookup</h4>
+
+                
+            </div>
+
+            <div class="row"  style="margin-top: 10px;"  >
+                <div class="col-12 col-xl-12 d-flex grid-margin stretch-card">
+                    <div class="card overflow-hidden"   style="border-color:#DDE7EE;  border-radius: 15px; " *ngIf="!showResults">
+                        <div class="card-body">
+                            <form [formGroup]="searchForm"  (ngSubmit)="invokeSearch($event)" class="row d-flex">
+                                <div class="form-group col-md-2">
+                                    <input  type="text" formControlName="msisdn" class="form-control" placeholder="MSISDN" autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.msisdn.errors }" />
+                                    <div *ngIf="submitted && f.msisdn.errors" class="invalid-feedback">
+                                        <div *ngIf="f.msisdn.errors.required"> is required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <input  type="text" formControlName="iccid" class="form-control" placeholder="SIM" autocomplete="off" [ngClass]="{ 'is-invalid': submitted && f.iccid.errors }" />
+                                    <div *ngIf="submitted && f.iccid.errors" class="invalid-feedback">
+                                        <div *ngIf="f.iccid.errors.required"> is required</div>
+                                    </div>
+                                </div>
+                               
+                                
+                                <div class="form-group col-md-2 text-center justify-content-md-center">
+                                    <div class="btn-group mb-4 mb-md-0" style="padding-right: 20px;" role="group" aria-label="Basic example">
+                                    <button class="btn btn-primary me-2" [disabled]="checkValid()">Search</button>
+                                    <button class="btn btn-secondary" (click)="invokeCancel()" >Cancel</button>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+
+            <div class="profile-page tx-13" *ngIf="showResults">
+                <div class="row">
+                   
+                    
+                    <div class="col-xl-10 grid-margin stretch-card"  >
+                        <div   class="card overflow-hidden" style="border-color:#DDE7EE; border-radius: 15px;  font-style: italic"  style = "border: none;box-shadow:none">
+                            <div class="card-header">
+
+                                <div class="container" >
+                                    <div class="row">
+                                      <div class="col tx-13 text-uppercase center-labels-alignement text-left" style="font-weight: bold;   color:blue">
+                                        CUSTOMER ID : {{this.subcriberDetails?.subscriberId}}
+                                      </div>
+                                      <div class="col  tx-13 text-uppercase center-labels-alignement text-center" style="font-weight: bold;   color:blue">
+                                        MSISDN:{{this.subcriberDetails?.msisdn}}
+                                      </div>
+                                      <div class="col tx-13 text-uppercase center-labels-alignement text-right" style="font-weight: bold;  color:blue">
+                                        SIM: {{this.subcriberDetails?.iccid}}
+                                      </div>
+                                    </div>
+                                  </div>
+                        
+                        </div>
+                            <div class="card-body">
+                                
+                                <div class="row">
+                                    <div class="col-md-12 col-xl-12 left-wrapper" >
+
+                                        <!-- Showing Customer Information -->
+                                        <div class="card rounded"  *ngIf="showCustomerInfo">
+                                            <div class="card-body" >
+                                                <div class="d-flex align-items-center justify-content-center mb-2 card-header">
+                                                    <h6 class="card-title mb-0" >Customer Information</h6>
+                                                </div>
+                                                        <div class ="row">
+                                                            <div class="col-md-6 col-xl-6 left-wrapper" > 
+                                                                <!-- <div class="table-responsive"> -->
+                                                        <table class="table table-striped" style="border: none;border-color: white;">
+                                                   
+                                                        
+                                                        <tbody>
+                                                            <tr>
+                                                            <td>Customer Id:</td>
+                                                            <td style="font-weight: bold;"> {{this.subcriberDetails?.subscriberId}}</td>
+                                                            </tr> 
+                                                            <tr>
+                                                                <td>Status:</td>
+                                                                <td style="font-weight: bold;"> {{this.subcriberDetails?.subscriberStatus}}</td>
+                                                                </tr>
+                                                            <tr>
+                                                                <td>MSISDN:</td>
+                                                                <td style="font-weight: bold;"> {{this.subcriberDetails?.msisdn}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>ICCID:</td>
+                                                                <td style="font-weight: bold;"> {{this.subcriberDetails?.iccid}}</td>
+                                                                </tr> 
+                                                                <tr>
+                                                                    <td>IMSI:</td>
+                                                                    <td style="font-weight: bold;"> {{this.subcriberDetails?.imsi}}</td>
+                                                                </tr>
+                                                               
+                                                                    <tr>
+                                                                        <td>Billing Code:</td>
+                                                                        <td style="font-weight: bold;"> {{this.subcriberDetails?.billingCode}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>ZIP:</td>
+                                                                        <td style="font-weight: bold;"> {{this.subcriberDetails?.zip}}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>Activation Date:</td>
+                                                                        <td style="font-weight: bold;"> {{this.subcriberDetails?.activationDate | date:'MM-dd-yyyy'}}</td>
+                                                                        </tr> 
+                                                                       
+                                                                        
+                                                        
+                                                        <tr>
+                                                            
+                                                        </tr>
+                                                        <tr>
+                                                           
+                                                        </tr>
+                                                        
+                                                        </tbody>
+                                                  </table>
+                                                                <!-- </div> -->
+                                                            </div>
+
+
+
+                                                            <div class="col-md-6 col-xl-6 left-wrapper" >
+                                                                <table class="table table-striped"style="border: none;border-color: white;">
+                                                   
+                                                        
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>Auto Renew:</td>
+                                                                            <td style="font-weight: bold;  text-transform: uppercase"> {{this.subcriberDetails?.autoRenew }}</td>
+                                                                            </tr>  
+                                                                       
+                                                                        <tr>
+                                                                            <td>Plan Code:</td>
+                                                                            <td style="font-weight: bold;"> {{this.subcriberDetails?.planCode}}</td>
+                                                                            </tr> 
+                                                                            <tr>
+                                                                                <td>Plan Name:</td>
+                                                                                <td style="font-weight: bold;"> {{this.subcriberDetails?.planName}}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>Expiration Date:</td>
+                                                                                <td style="font-weight: bold;"> {{this.subcriberDetails?.expirationDate | date:'MM-dd-yyyy'}}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                            <td>PUK1:</td>
+                                                                            <td style="font-weight: bold;"> {{this.subcriberDetails?.puk1}}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>PUK2:</td>
+                                                                                <td style="font-weight: bold;"> {{this.subcriberDetails?.puk2}}</td>
+                                                                                </tr> 
+                                                                    
+                                                                    <tr>
+                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                       
+                                                                    </tr>
+                                                                    
+                                                                    </tbody>
+                                                              </table>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <!-- Showing Livelookup -->
+                                        <div class="card rounded"  *ngIf="showlivelookup">
+                                            <div class="card-body" >
+                                                <div class="d-flex align-items-center justify-content-center mb-2 card-header">
+                                                    <h6 class="card-title mb-0" >Live Lookup</h6>
+                        
+                                                </div>
+                        
+                                                <div class ="row">
+                                                    <div class="col-md-6 col-xl-6 left-wrapper" > 
+                                                       
+                                                        <table class="table table-striped"style="border: none;border-color: white;">
+                                                   
+                                                        
+                                                            <tbody>
+                                                                <tr>
+                                                                 <td>Subscriber Status:</td>
+                                                                    <td style="font-weight: bold;"> {{this.hlrs?.subscriberStatus}}</td>
+                                                                    </tr>
+                                                                <tr>
+                                                                <td>MSISDN:</td>
+                                                                <td style="font-weight: bold;"> {{this.hlrs?.msisdn}}</td>
+                                                                </tr> 
+                                                                <tr>
+                                                                    <td>ICCID:</td>
+                                                                    <td style="font-weight: bold;"> {{this.hlrs?.iccid}}</td>
+                                                                </tr>
+                                                                
+                                                                    
+
+                                                                    <tr>
+                                                                        <td>Product:</td>
+                                                                        <td style="font-weight: bold;">
+                                                                        <table class="table" style="border: none;">
+                                                                            
+                                                                            <tr *ngFor ="let product of this.hlrs?.baseProduct?.product">
+                                                                                <td >{{product.productID}}</td>
+                                                                               
+                                                                            </tr>
+                                                                        </table> </td>
+                                                                   
+                                                                  
+                                                            
+                                                            <tr>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                               
+                                                            </tr>
+                                                            
+                                                            </tbody>
+                                                      </table> 
+                                            
+                                           
+                                                    
+                                           
+                    
+                                         
+                    
+                    
+                                           
+                                           
+                                
+                                        </div>
+                                        <div class="col-md-6 col-xl-6 left-wrapper" > 
+                                            <table class="table table-striped"style="border: none;border-color: white;">
+                                                <tbody>
+                                                    <tr>
+                                                    <td>ICCID Status:</td>
+                                                    <td style="font-weight: bold;"> {{this.hlrs?.iccidStatus}}</td>
+                                                    </tr> 
+
+                                                    <tr>
+                                                        <td>IMSI:</td>
+                                                        <td style="font-weight: bold;"> {{this.hlrs?.imsi}}</td>
+                                                    </tr>
+                                                   
+                                                    <tr>
+                                                        <td>APN:</td>
+                                                        <td style="font-weight: bold;"> {{this.hlrs?.apn}}</td>
+                                                        </tr> 
+                                                        <tr>
+                                                            <td>DNN:</td>
+                                                            <td style="font-weight: bold;"> {{this.hlrs?.dnn}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>PNN:</td>
+                                                            <td style="font-weight: bold;"> {{this.hlrs?.pdn}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>MS Status:</td>
+                                                            <td style="font-weight: bold;"> {{this.hlrs?.msStatus}}</td>
+                                                        </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                        
+                                            </div>
+                        
+                                            </div>
+                                        </div> 
+                                        <!--  Query Device -->
+
+                                        <div class="card rounded"  *ngIf="showQueryDevice">
+                                            <div class="card-body" >
+                                               
+                                                <form [formGroup]="deviceForm" (ngSubmit)="searchData()" >
+                                                    <div class="row">
+                                                        <div class="col-md-6" style="padding-left: 30px;">
+                                                            <div class="form-group ">
+                                                                <input type="text" class="form-control" formControlName="imei" id="imei"
+                                                                    placeholder="Enter IMEI No" >
+                                                                    
+                                                            </div>
+                                                        </div>
+                                                       
+                                                            <div class="form-group col-md-6">
+                                                                <button class="btn btn-primary me-2" type="submit">Search</button>
+                                                                <div class="btn btn-secondary me-2" (click)="invokeCancel()" >Cancel</div>
+                                                         
+                                                        </div>
+                                                    </div>
+                                                </form>
+                        
+                                            </div>
+                                        </div> 
+  
+
+                                        <!-- Showing balance Information -->
+                                        <div class="card rounded"  *ngIf="showBalanceInfo">
+                                            <div class="card-body" >
+                                                <div class="d-flex align-items-center justify-content-center mb-2 card-header">
+                                                    <h6 class="card-title mb-0" >Balance Information</h6>
+                        
+                                                </div>
+
+                                      <table class="table table-condensed table-bordered">
+                                            <thead>
+                                                <tr>
+
+                                                   
+                                                    <th>Type</th>
+                                                    <th> Category</th>
+                                                    <th>Limit</th>
+                                                    <th>Used</th>
+                                                    
+                                                    <th>Remaining</th>
+                                                    <th>Current Behavior</th>
+                                                    <th>Auto Renew</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let usage of  this.Usage?.baseProduct?.product; let i = index">
+                                                   
+                                                <th  > <button type="button" class="btn btn-link"  (click)="balanceTiers(balanceTierDetails)" placement="top" ngbTooltip="tier details" > {{usage.productID}} </button> </th>
+                                                    <th> {{usage.usage[0].limit.category}}</th>
+                                                <th>{{usage.usage[0].limit.bucketValue}}   {{usage.usage[0].limit.bucketValueUnit}}</th>
+                                                <th>{{usage.usage[0].used}}   {{usage.usage[0].unit}}</th>
+                                                <th>{{usage.usage[0].remaining}}  {{usage.usage[0].remainingUnit}}</th>
+                                                <th>{{usage.usage[0].status}}</th>
+                                                <th style="text-transform: uppercase;">{{usage.renewalInfo.autoRenew}}</th>
+                                               
+                                            </tr> 
+
+                                            
+                                            
+                                            </tbody>
+                                      </table>
+                                            </div>
+                                        </div>
+
+                                        <!-- New Purchase -->
+                                        <div class="card rounded"  *ngIf="showpurchaseplan">
+                                            <div class="card-body" >
+                                                <div class="d-flex align-items-center justify-content-center mb-2 card-header">
+                                                    <h6 class="card-title mb-0" >Top Up</h6>
+                        
+                                                </div>
+                                                <form   [formGroup]="purchasePlanForm" (ngSubmit)="purchasenewPlan()" >
+                                                    <div class="form-group row mb-3" >
+                                                        <label for="exampleInputMobile" class="col-sm-3 col-form-label"> Plan
+                                                            <span style="color: red;">*</span>
+                                                        </label>
+                                                        <div class="form-group col-sm-6"> 
+                                                            <select formControlName="planCode" class="form-control"  autocomplete="off" [(ngModel)]="selectedPlanCode"   [ngClass]="{ 'is-invalid': submitted && pf.planCode.errors }"   (change)="selectedChangePlanCode($event)"   >
+                                                                <option value="" selected disabled> Select</option>
+                                                                <option *ngFor="let sel of mvnotopupPlans" [ngValue]="sel.planCode">{{sel.planName}}</option>
+                                                               </select>
+
+                                                               <div *ngIf="submitted && pf.planCode.errors" class="invalid-feedback">
+                                                                <div *ngIf="pf.planCode.errors.required"> is required</div>
+                                                            </div>
+                                                        </div>
+                                                      </div>
+                                                      <div class="text-center md-2" style="padding-top: 15px;" >
+                                                        <button class="btn btn-primary me-2" type="submit"  [disabled]="purchasePlanForm.invalid && submitted"   >Submit</button>
+                                                        <button class="btn btn-secondary" type="reset" (click) ="resetpurchasePlan()" >Cancel</button>
+                                                       
+                                                    </div>
+                                                </form>
+                        
+                                            </div>
+                                        </div> 
+
+                                        <!-- Change Plan -->
+                                        <div class="card rounded"  *ngIf="showchangeplan">
+                                            <div class="card-body" >
+                                                <div class="d-flex align-items-center justify-content-center mb-2 card-header">
+                                                    <h6 class="card-title mb-0" >Change Plan</h6>
+                        
+                                                </div>
+                                                <form [formGroup]="changePlanForm" (ngSubmit)="ChangePlan()" >
+                                                    <div class="row mb-3">
+                                                        <label for="exampleInputMobile" class="col-sm-3 col-form-label"> Plan
+                                                            <span style="color: red;">*</span>
+                                                        </label>
+                                                        <div class="col-sm-6">
+                                                            <select formControlName="planCode" class="form-control"  [(ngModel)]="selectedPlanCode" [ngClass]="{ 'is-invalid': submitted && cf.planCode.errors }" (change)="selectedChangePlanCode($event)" autocomplete="off"   >
+                                                                <option value="" selected disabled> Select</option>
+                                                                <option *ngFor="let sel of mvnomainPlans" [ngValue]="sel.planCode">{{sel.planName}}</option>
+                                                               </select>
+
+                                                               <div *ngIf="submitted && cf.planCode.errors" class="invalid-feedback">
+                                                                <div *ngIf="cf.planCode.errors.required"> is required</div>
+                                                            </div>
+                                                        </div>
+                                                      </div>
+
+                                                      <div class="text-center md-2" style="padding-top: 15px;" >
+                                                        <button class="btn btn-primary me-2" [disabled]="changePlanForm.invalid && submitted"   >Submit</button>
+                                                        <button class="btn btn-secondary" type="reset" (click)="resetChangePlan()"  >Cancel</button>
+                                                       
+                                                    </div>
+                                                </form>
+                                                
+                        
+                                            </div>
+                                        </div> 
+
+                                        <!-- Plan details -->
+
+                                        
+                                            
+                                        
+                                                <div class="col-md-12 stretch-card justify-content-center grid-margin grid-margin-md-0 " style="height: 800px;width: 500px;" *ngIf="showPlanDetails">
+                                                    <div class="card">
+                                                        <div class="card-header">
+                                                            <h5 class="text-center" id="ratePlanModalLabel">
+                                                                {{mvnoPlanDetails?.planName}} ({{mvnoPlanDetails?.planCode}})
+                                                            </h5>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <!-- <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-muted mb-4">Plan Name</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-muted mb-4">SMS Limit</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-muted mb-4">Data Limit</h6>
+                                                                </div>
+                                                            </div>
+                                                             -->
+
+                                                             <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-muted mb-4">Voice SOC Name</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-muted mb-4">SMS SOC Name</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-muted mb-4">Data SOC Name</h6>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row" style="margin-top: -10px;">
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-body mb-4">{{mvnoPlanDetails?.voiceSOC}}</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-body mb-4">{{mvnoPlanDetails?.smssoc}}</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-body mb-4">{{mvnoPlanDetails?.dataSOC}}</h6>
+                                                                </div>
+                                                            </div>
+                                                            <br><br>
+
+                                        
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-muted mb-4">Voice Limit</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-muted mb-4">SMS Limit</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-muted mb-4">Data Limit</h6>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row" style="margin-top: -10px;">
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-body mb-4">{{mvnoPlanDetails?.voiceLimit}}</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-body mb-4">{{mvnoPlanDetails?.smsLimit}}</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-body mb-4">{{mvnoPlanDetails?.dataLimit}}</h6>
+                                                                </div>
+                                                            </div>
+
+                                        
+                                                            
+                                                           
+
+                                                            <div class="row" >
+                                                                <div class="col-md-4" *ngFor ="let tierdetails of mvnoPlanDetails?.planTierDetails ">
+                                                                    <h6 class="text-body mb-4">{{tierdetails?.tier}}</h6>
+                                                                    <h6 class="text-body mb-4">{{tierdetails?.tierLimit}}</h6>
+                                                                    <h6 class="text-body mb-4">{{tierdetails?.behaviorName}}</h6>
+                                                                </div>
+                                                            </div>
+                                                            <br><br>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-muted mb-4">Auto Renew</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-muted mb-4">Expiration Type</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-muted mb-4">Expiration Days</h6>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                            <div class="row" style="margin-top: -10px;">
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-body mb-4 text-uppercase">{{mvnoPlanDetails?.autoRenew}}</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-body mb-4">{{mvnoPlanDetails?.expirationTypeName}}</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-body mb-4">{{mvnoPlanDetails?.expirationDay}}</h6>
+                                                                </div>
+                                                            </div>
+<br><br>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-muted mb-4">Expiration Month(s)</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-muted mb-4">Plan Common Socs</h6>
+                                                                </div>
+                                                               
+                                                                
+                                                                
+                                                            </div>
+
+                                                            <div class="row" style="margin-top: -10px;">
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-body mb-4">{{mvnoPlanDetails?.expirationMonth}}</h6>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <h6 class="text-body mb-4">{{mvnoPlanDetails?.planCommonSOCs}}</h6>
+                                                                </div>
+                                                               
+                                                                
+                                                                
+                                                            </div>
+                                                           
+                                                        
+                                                            
+
+                                                          
+
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        
+                                         
+
+                                        <!-- Purchase Order Details -->
+                                        <div class="card rounded"  *ngIf="showpurchaseordershistory">
+                                            <div class="d-flex align-items-center justify-content-center mb-2 card-header">
+                                                <h6 class="card-title mb-0" >Purchase Orders</h6>
+                    
+                                            </div>
+                                            <div class="d-flex justify-content-between " style="padding-bottom: 10px;  "> 
+                                            <div class="btn-group mb-4 mb-md-0" style="padding-right: 20px;" role="group" aria-label="Basic example">
+ <div class="table-controls">
+                    
+                    <select class="form-select" (change)="onItemsPerPageChange($event)">
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+  </select>
+                  </div>
+                                            </div>  
+            <div class="btn-group mb-4 mb-md-0" >
+
+               
+                <form class="search-form" >
+                  <div class="input-group">
+                    <div class="input-group-text" >
+                      <i class="feather icon-search"></i>
+                    </div>
+                    <input type="text" class="form-control" (keyup)='filterDataPurchaseOrderHistory($event)'  id="navbarForm" placeholder="Search">
+                  </div>
+                </form>
+                
+                
+                </div>
+                                            </div>
+                
+                                            <div class="table-responsive">
+                                                <table id="dataTable" class="table">
+                                                    <thead>
+                                                      <tr>
+                                                        <th>ORDER ID</th>
+                                                        <th>PLAN CODE</th>
+                                                        <th>PLAN NAME</th>
+                                                        <th>STATUS</th>
+                                                        <th>EXPIRATION DATE</th>
+                                                        <th>AUTO RENEWAL</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr *ngFor="let purchaseOrder of paginatedData">
+                                                        <td>
+                                                            <button class="btn btn-link" placement="top" ngbTooltip="Purchase order detail" (click)="purchaseorderdetailsModal(POdetails,purchaseOrder.purchaseId)">
+                                                              {{purchaseOrder.purchaseId }}
+                                                            </button>
+                                                          </td>
+                                                        <td>{{purchaseOrder.planCode}}</td>
+                                                        <td>{{purchaseOrder.planName}}</td>
+                                                        <td>{{purchaseOrder.status}}</td>
+                                                        <td>{{purchaseOrder.expirationDate | date:'MM-dd-yyyy' }}</td>
+                                                        <td class="text-uppercase" >{{purchaseOrder.autoRenewing}}</td>
+                                                      </tr>
+                                                      
+                                                      
+                                                      
+                                                    </tbody>
+                                                    <tfoot>
+                                                      <tr>
+                                                        <th> 
+                                                            <button (click)="previousPage()"   type="button" class="btn btn-blue">   <i class="feather icon-chevrons-left "></i></button>
+                                                            <span>Page {{currentPage}} of {{calculateTotalPages()}}</span>
+                                                            <button (click)="nextPage()"  type="button" class="btn btn-blue" > <i class="feather icon-chevrons-right  "></i></button>
+                                                        
+                                                        
+                                                        
+                                                        </th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                      </tr>
+                                                    </tfoot>
+                                                  </table>
+                                            </div>
+                                        </div>
+
+
+
+                                        <!-- Orders History -->
+                                        <div class="card rounded"  *ngIf="ShowOrderHistory ">
+                                            <div class="d-flex align-items-center justify-content-center mb-2 card-header">
+                                                <h6 class="card-title mb-0" > Orders</h6>
+                    
+                                            </div>   
+                                            <div class="d-flex justify-content-between " style="padding-bottom: 10px;  "> 
+                                                <div class="btn-group mb-4 mb-md-0" style="padding-right: 20px;" role="group" aria-label="Basic example">
+     <div class="table-controls">
+                        
+        <select class="form-select" (change)="onItemsPerPageChange($event)">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+          </select>
+                        <!-- <span for="entriesPerPage">enteries per page</span> -->
+                      </div>
+                                                </div>  
+                <div class="btn-group mb-4 mb-md-0" >
+    
+                   
+                    <form class="search-form" >
+                      <div class="input-group">
+                        <div class="input-group-text" >
+                          <i class="feather icon-search"></i>
+                        </div>
+                        <input type="text" class="form-control" (keyup)='filterDataOrderHistory($event)'  id="navbarForm" placeholder="Search">
+                      </div>
+                    </form>
+                    
+                    
+                    </div>
+                                                </div>
+                    
+                                                <div class="table-responsive">
+                                                    <table id="dataTable" class="table">
+                                                        <thead>
+                                                          <tr>
+                                                            <th>ID</th>
+                                                            <th>MSISDN</th>
+                                                            <th>CREATED ON</th>
+                                                            <th>ORDER TYPE</th>
+                                                            <th>ORDER STATUS</th>
+                                                          
+                                                          </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                          <tr *ngFor="let order of paginatedData">
+                                                             <td>
+
+                                                                <button class="btn btn-link" placement="top" ngbTooltip="order detail" (click)="orderHistorydetailsModal(ordersHistoryDetails,order.id,order.mvnoApiTypeId)">
+                                                                    {{order.id}}
+                                                                  </button>
+                                                               
+                                                                    
+                                                               
+                                                              </td>
+                                                            <td>{{order.msisdn}}</td>
+                                                            <td>{{order.createdOn | date:'MM-dd-yyyy'}}</td>
+                                                            <td>{{order.orderType}}</td>
+                                                            <td>{{order.orderStatus}}</td>
+                                                          </tr>
+                                                          
+                                                          
+                                                          
+                                                        </tbody>
+                                                        <tfoot>
+                                                          <tr>
+                                                            <th>  
+                                                                <button (click)="previousPage()"   type="button" class="btn btn-blue">   <i class="feather icon-chevrons-left "></i></button>
+                                                            <span>Page {{currentPage}} of {{calculateTotalPages()}}</span>
+                                                            <button (click)="nextPage()"  type="button" class="btn btn-blue" > <i class="feather icon-chevrons-right  "></i></button>
+                                                            
+                                                            
+                                                            
+                                                            </th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                          </tr>
+                                                        </tfoot>
+                                                      </table>
+                                                </div>
+                                        </div>
+
+                                        <!-- partner async logs  -->
+
+                                        <div class="card rounded"  *ngIf="showpartnerasynclogs">
+                                            <div class="d-flex align-items-center justify-content-center mb-2 card-header">
+                                                <h6 class="card-title mb-0" >Async Logs</h6>
+                    
+                                            </div>
+                                            <div class="d-flex justify-content-between " style="padding-bottom: 10px;  "> 
+                                                <div class="btn-group mb-4 mb-md-0" style="padding-right: 20px;" role="group" aria-label="Basic example">
+                                                    <form class="form-group" [formGroup]="asyncForm">
+                                                        <div class="row ">
+
+                                                         
+                                                              <div class="col-16 col-md-12 col-xl-12">
+                                                                <!-- <div class="card" style = "border: none;box-shadow:none">
+                                                                  <div class="card-body"> -->
+                                                                    <!-- <div class="btn-group mb-4 mb-md-0"  role="group" aria-label="Basic example">    -->
+                                                                     
+                                                                    <div class="d-flex align-items-center  justify-content-between">
+                                                                    
+                                                                        <div class="input-group append ">
+                                                                            <input  class="form-control" placeholder="From date" formControlName ="fromDate"
+                                                                            ngbDatepicker     #from="ngbDatepicker" >
+                                                                            <button class="input-group-text"  type="button" (click)="from.toggle()">
+                                                                              <i class="feather icon-calendar icon-md text-muted"></i>
+                                                                            </button>
+                                                                          </div>
+                                                                          <div class="input-group append" style="padding-left: 20px;">
+                                                                            <input  class="form-control" placeholder="Expiration date" formControlName ="toDate"
+                                                                            ngbDatepicker    #to="ngbDatepicker" >
+                                                                            <button class="input-group-text" type="button" (click)="to.toggle()">
+                                                                              <i  class="feather icon-calendar icon-md text-muted"></i>
+                                                                            </button>
+                                                                          </div>
+
+                                                                         
+                                                
+                                                                         
+                                                                          <select  class="form-select form-select-md mr-2"   style = "margin-left:30px"  formControlName = "asynctype">
+                                                                            
+                                                                            <option value="" selected disabled> Async Type</option>
+                                                                            <option value="1">Order Date</option>
+                                                                            <option value="2">Fulfill Date</option>
+                                                                            <option value="3">Complete Date</option>
+                                                                            <option value="4">Cancel Date</option>
+                                                                          
+                                                                          </select>
+                                                                        
+                                                          
+                                                                                 <button class="btn btn-primary mr-1"    (click)="getpartnerAysncLogs()" [disabled] = "!asyncForm.valid" style = "margin-left:30px">Search </button>
+                                                                    </div>
+                                                                    <!-- </div> -->
+                                                                  <!-- </div>
+                                                                </div> -->
+                                                              </div>
+                                                        </div>
+                                                    </form>
+
+
+                                                                                               </div>   
+            <div class="btn-group mb-4 mb-md-0" >
+
+               
+                <form class="search-form" >
+                  <div class="input-group">
+                    <div class="input-group-text" >
+                      <i class="feather icon-search"></i>
+                    </div>
+                    <input type="text" class="form-control" (keyup)='filterDataPurchaseOrderHistory($event)'  id="navbarForm" placeholder="Search">
+                  </div>
+                </form>
+                
+                
+                </div>
+                                            </div>
+                
+                                            <div class="table-responsive">
+                                                <table id="dataTable" class="table">
+                                                    <thead>
+                                                      <tr>
+                                                        <th>ORDER ID</th>
+                                                        <th>PLAN CODE</th>
+                                                        <th>PLAN NAME</th>
+                                                        <th>STATUS</th>
+                                                        <th>EXPIRATION DATE</th>
+                                                        <th>AUTO RENEWAL</th>
+                                                      </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                      <tr *ngFor="let purchaseOrder of paginatedData">
+                                                        <td>
+                                                            <button class="btn btn-link" placement="top" ngbTooltip="Purchase order detail" (click)="purchaseorderdetailsModal(POdetails,purchaseOrder.purchaseId)">
+                                                              {{purchaseOrder.purchaseId }}
+                                                            </button>
+                                                          </td>
+                                                        <td>{{purchaseOrder.planCode}}</td>
+                                                        <td>{{purchaseOrder.planName}}</td>
+                                                        <td>{{purchaseOrder.status}}</td>
+                                                        <td>{{purchaseOrder.expirationDate | date:'MM-dd-yyyy' }}</td>
+                                                        <td class="text-uppercase" >{{purchaseOrder.autoRenewing}}</td>
+                                                      </tr>
+                                                      
+                                                      
+                                                      
+                                                    </tbody>
+                                                    <tfoot>
+                                                      <tr>
+                                                        <th> 
+                                                            <button (click)="previousPage()"   type="button" class="btn btn-blue">   <i class="feather icon-chevrons-left "></i></button>
+                                                            <span>Page {{currentPage}} of {{calculateTotalPages()}}</span>
+                                                            <button (click)="nextPage()"  type="button" class="btn btn-blue" > <i class="feather icon-chevrons-right  "></i></button>
+                                                        
+                                                        
+                                                        
+                                                        </th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                      </tr>
+                                                    </tfoot>
+                                                  </table>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                        
+                    
+
+                <!-- </div> -->
+                <div class="col-xl-4  content-nav">
+                    <ul class="nav content-nav d-flex flex-column">
+<P style="font-weight: bold;font-style: italic; align-items: center; justify-content: center;">QUICK LINKS</P>
+<li  style="font-weight: bold; " class="nav-item" *ngIf="!showCustomerInfo">
+    <a   class="nav-link" (click)="showCustomerInformation()">Customer Information </a>
+    
+  </li>
+<li style="font-weight: bold;"  class="nav-item">
+    <a  class="nav-link" (click)="showCarrierInfo()">Live Lookup</a>
+    <!-- TODO API Integration  -->
+  </li>
+                        <li  style="font-weight: bold; " class="nav-item">
+                            <a   class="nav-link" (click)="showBalanceInformation()">Balance Information </a>
+                            <!-- TODO API Integration  -->
+                          </li>
+                         
+                          <!-- <li (click)="queryDevice()"  style="font-weight: bold;" class="nav-item">
+                            <a  class="nav-link">Device Information </a>
+                           
+                          </li> -->
+                      <li  (click)="purchasePlan()" style="font-weight: bold;" class="nav-item">
+                        <a class="nav-link"> Top-up</a>  
+                      
+                      </li>
+                      <li (click)="changePlan()"  style="font-weight: bold;" class="nav-item">
+                        <a  class="nav-link"> Change Plan</a>
+                       
+                      </li>
+                      <li (click)="purchaseOrders()"   style="font-weight: bold;" class="nav-item">
+                        <a class="nav-link"> Purchase Orders</a>
+                      </li>
+                      <li (click)="showOrderhistory()"    style="font-weight: bold;" class="nav-item">
+                        <a  class="nav-link"> Orders</a>
+                        
+                      </li>
+                      <!-- <li (click)="partnerAsyncLogs()"    style="font-weight: bold;" class="nav-item">
+                        <a  class="nav-link"> Async Logs</a>
+                        
+                      </li> -->
+                     
+                     
+                      
+                    
+                    </ul>
+                  </div>
+                
+                </div>  
+            </div>
+
+           
+
+            
+             
+        </div>
+    </div>
+</div>
+<div *ngIf="isLoading"  class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+
+<!-- purchaseorderdetailsbyid modal -->
+
+<ng-template #POdetails let-modal>
+    <div class="modal-header">
+        <h5 class="align-items-center justify-content-center">{{purchaseOrderDetailsById?.id}}  </h5> 
+   <button type="button" class="btn-close" (click)="modal.close('by: close icon')" data-bs-dismiss="modal" aria-label="btn-close" >
+     
+   </button> 
+</div>  
+  <div class="modal-body">
+    <div class ="row">
+        <div class="col-md-6 col-xl-6 left-wrapper" > 
+            <table class="table table-striped"style="border: none;border-color: white;">
+                                                   
+                                                        
+                <tbody>
+                    <tr>
+                    <td>MVNO Plan ID:</td>
+                    <td > {{purchaseOrderDetailsById?.mvnoPlanId}}</td>
+                    </tr> 
+                    <tr>
+                        <td>Plan Code</td>
+                        <td > {{purchaseOrderDetailsById?.planCode}}</td>
+                    </tr>
+                    <tr>
+                        <td>Plan Name:</td>
+                        <td > {{purchaseOrderDetailsById?.planName}}</td>
+                        </tr> 
+                        <tr>
+                            <td>Description</td>
+                            <td > {{purchaseOrderDetailsById?.description}}</td>
+                        </tr>
+                        <tr>
+                            <td>Start Date:</td>
+                            <td > {{purchaseOrderDetailsById?.startDate| date:'yyyy-MM-dd'}}</td>
+                        </tr>
+                        <tr>
+                            <td>Plan Type:</td>
+                            <td > {{purchaseOrderDetailsById?.planType}}</td>
+                        </tr>
+                        
+                      
+                        <tr>
+
+                           
+                           
+                            <td>Voice Limit:</td>
+                            <td > <button type="button" class="btn btn-link" (click)="isvoiceCollapsed = !isvoiceCollapsed; showTiers('show_voice_tier')"
+                                [attr.aria-expanded]="isvoiceCollapsed" aria-controls="collapseExample" placement="top" ngbTooltip="voice tier details"> {{purchaseOrderDetailsById?.voiceLimit}}</button>
+                            </td>
+
+                           
+                         
+                        </tr>
+
+                      <div  id="collapseExample" [ngbCollapse]="!isvoiceCollapsed"  class="collapse-content">
+                                      <div class="card-body">
+                                        <table class="table"style="border: none;">
+<tbody>
+
+
+                                    <tr *ngFor = "let voice of VoiceTiers">
+                                       
+                                        <td   > {{voice.tier}}</td>
+                                        <td  > {{voice.tierLimit}}</td>
+                                        <td > {{voice.tierBehaviorName}} </td> 
+                                    </tr>   
+                                    </tbody>
+                                        </table>
+                                      </div>
+                                    </div> 
+
+
+                
+                
+                
+                </tbody>
+          </table>  
+        </div>
+        <div class="col-md-6 col-xl-6 left-wrapper" > 
+            <table class="table table-striped"style="border: none;border-color: white;">
+                                                   
+                                                        
+                <tbody>
+                    <!-- <tr>
+                    <td>SMS Product ID:</td>
+                    <td style="font-weight: bold;"> {{purchaseOrderDetailsById?.smsProductId}}</td>
+                    </tr>  -->
+                    <tr>
+                        
+                    </tr>
+                    <!-- <tr>
+                        <td>Data Product ID:</td>
+                        <td style="font-weight: bold;"> {{purchaseOrderDetailsById?.dataProductId}}</td>
+                        </tr>  -->
+                        <tr>
+                            
+                        </tr>
+                        <tr>
+                            <td>Auto Renewal:</td>
+                            <td  class="text-uppercase"> {{purchaseOrderDetailsById?.autoRenew}}</td>
+                        </tr>
+                        <tr>
+                            <td>Expiration Type:</td>
+                            <td > {{purchaseOrderDetailsById?.expirationTypeName}}</td>
+                        </tr>
+                        <tr>
+                            <td>Expiration Month:</td>
+                            <td > {{purchaseOrderDetailsById?.expirationMonth}}</td>
+                        </tr>
+                        <tr>
+                            <td>Roaming:</td>
+                            <td class="text-uppercase"> {{purchaseOrderDetailsById?.roaming}}</td>
+                        </tr>
+                
+                <tr>
+                                               
+                    <td>SMS Limit:</td>
+                    <td > <button type="button" class="btn btn-link" (click)="issmsCollapsed = !issmsCollapsed;showTiers('show_sms_tier')"
+                        [attr.aria-expanded]="!issmsCollapsed " aria-controls="collapseExample" placement="top" ngbTooltip="sms tier details"> {{purchaseOrderDetailsById?.smsLimit}} </button></td>
+                    
+                </tr>
+
+
+                <div id="collapseExample" [ngbCollapse]="!issmsCollapsed"  class="collapse-content">
+                    <div class="card-body">
+                      <table class="table table-condensed" style="border: none ;">
+<tbody>
+                  <tr *ngFor = "let sms of SMSTiers">
+                     
+                      <td   > {{sms.tier}}</td>
+                      <td   > {{sms.tierLimit}} </td>
+                       <td > {{sms.tierBehaviorName}} </td> 
+                  </tr>   
+                  </tbody>
+                      </table>
+                    </div>
+                  </div> 
+                <tr>
+                    <td>Data Limit:</td>
+                    <td > <button type="button" class="btn btn-link" (click)="isdataCollapsed = !isdataCollapsed;showTiers('show_data_tier')"
+                        [attr.aria-expanded]="!isdataCollapsed" aria-controls="collapseExample" placement="top" ngbTooltip="data tier details"> {{purchaseOrderDetailsById?.dataLimit}} </button></td>
+                </tr>
+                <div id="collapseExample" [ngbCollapse]="!isdataCollapsed"  class="collapse-content">
+                    <div class="card-body">
+                      <table class="table"style="border: none;" >
+<tbody>
+   
+                  <tr *ngFor = "let data of DataTiers">
+                     
+                      <td  > {{data.tier}}</td>
+                      <td  > {{data.tierLimit}}</td>
+                      <td > {{data.tierBehaviorName}} </td> 
+                  </tr>   
+                  </tbody>
+                      </table>
+                    </div>
+                  </div>
+                
+                </tbody>
+          </table>  
+        </div>
+    </div>
+    
+   
+  </div> 
+  <div class="modal-footer"> 
+    
+   <button type="button" class="btn btn-danger" (click)="modal.close('by: close button');">Close</button>
+   
+  </div> 
+  </ng-template>
+
+  <!-- orderdetailsbyid modal -->
+ 
+
+  <ng-template #ordersHistoryDetails let-modal>
+    <div class="modal-header">
+        <!-- <h5 class="align-items-center justify-content-center">{{this.OrderDetailsById[0].id}}  </h5>  -->
+   <button type="button" class="btn-close" (click)="modal.close('by: close icon')" data-bs-dismiss="modal" aria-label="btn-close" >
+     
+   </button> 
+</div>  
+<div class="modal-body">
+    <div class="card">
+        <div class="card-header">
+            Request :
+        </div>
+        <div class="card-body">
+            <pre   >
+                {{xmlRequest}}
+                <!-- <strong>{{ key }}:</strong> {{partnerRequest }} -->
+                </pre>
+
+        </div>
+    </div>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            Response :
+        </div>
+        <div class="card-body">
+            <pre>
+                {{xmlResponse }}
+           </pre>
+        </div>  
+    </div>
+</div>
+  <div class="modal-footer"> 
+    
+   <button type="button" class="btn btn-danger" (click)="modal.close('by: close button');">Close</button>
+   
+  </div> 
+  </ng-template>
+
+  <!-- balancetierdetails -->
+
+  <ng-template #balanceTierDetails let-modal>
+    <div class="modal-header" style="border: none;">
+        <!-- <h5 class="align-items-center justify-content-center">{{this.OrderDetailsById[0].id}}  </h5>  -->
+   <button type="button" class="btn-close" (click)="modal.close('by: close icon')" data-bs-dismiss="modal" aria-label="btn-close" >
+     
+   </button> 
+</div>  
+<div class="modal-body">
+    <table class="table" style="border: none; border-color: white;">
+
+        <thead>
+            <tr>
+            
+              <th>TYPE</th>
+              <th>BEHAVIOUR</th>
+              <th>VALUE</th>
+           
+            
+            </tr>
+          </thead>
+        <tbody>
+        
+        
+          <tr *ngFor = "let threshold of thresholds">
+             
+              <td   > {{threshold.thresholdType}}</td>
+              <td  > {{threshold.behavior}}</td>
+              <td > {{threshold.thresholdValue}}</td>
+          </tr>   
+          </tbody>
+              </table>
+</div>
+  <div class="modal-footer"> 
+    
+   <button type="button" class="btn btn-danger" (click)="modal.close('by: close button');">Close</button>
+   
+  </div> 
+  </ng-template>
+  
+    
+    
+    
+   

@@ -1,0 +1,68 @@
+<div class="row"> 
+
+    <div class="col-md-12 stretch-card">
+
+<div class="card" style="border-color: blue;">
+<div class="card-header" >
+<h4  style="color:blue" >eSIM QR Code</h4>
+</div>
+<div class="card-body">
+<form class="form-inline" [formGroup]="simForm" (ngSubmit)="genrateCode()" >
+<div class="row d-flex">
+    <div class ="form-group col-4">
+       <!--  <label>Partner</label>  -->
+        <input style="border-color: blue;" type="text" formControlName="iccid" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.iccid.errors }" placeholder="ICCID" autocomplete="off" />
+        
+        <div *ngIf="submitted && f.iccid.errors" class="invalid-feedback">
+            <div *ngIf="f.iccid.errors.required">ICCID required</div> 
+        </div>
+    </div>
+    <!-- <div class="col-md-4 ">
+        <div >
+    <div class="form-group" >
+ 
+        
+        <input class="form-control" placeholder="Expiration date" 
+        ngbDatepicker   #from="ngbDatepicker"  formControlName ="expDate">
+        <div class="input-group-append">
+              <button class="btn btn-outline-light btn-icon" type="button"  (click)="from.toggle()" >
+                <i class="feather icon-calendar"></i>
+          </button>
+        </div>
+  
+         </div>
+        </div>
+    </div> 
+    </div>-->
+    <div class="col-md-6">
+      
+        <button class="btn btn-primary me-2" >Generate</button>
+        <button class="btn btn-secondary me-2" type="reset" (click)="onReset()">Reset</button>
+   
+    </div>
+</div>
+
+
+<div class = "text-center" *ngIf= "imageToShow != ''">
+    <img src= {{imageToShow}} width = "400px" alt="qrCode">
+    </div>
+</form> 
+
+</div>
+</div>
+
+</div>
+</div>
+
+
+<div *ngIf="isLoading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+<!-- <div class = "card" *ngIf= "imageToShow != ''">
+<div class = "card-body">
+
+
+</div>
+</div> -->

@@ -1,0 +1,96 @@
+<!-- Version 1.0 
+     project name :MVNOC ACP RESELLER PLATFORM
+     filename :sims.component.html
+     path :src\app\views\pages\sims.component.ts
+     purpose: to upload sims
+     author: apoorva
+     version history: v1.0 initial version
+ -->
+<!--  -->
+                <div class="row"> 
+
+                    <div class="col-md-12 stretch-card">
+
+        <div class="card" >
+            <div class="card-header">
+                <h4 >SIM Inventory</h4>
+            </div>
+            <div class="card-body">
+             <form class="form-inline" [formGroup]="simForm"> 
+                <div class="row d-flex">
+                    <div class="col-md-3" >
+                        <input  class = "form-control" placeholder="PO" formControlName = "poNr">
+                    </div>
+                    <!-- <div class="col-md-4 ">
+                        <div >
+                    <div class="form-group" >
+                      
+                        
+
+                        <div class="mb-3">
+                            <div class="input-group">
+                              <input class="form-control" placeholder="Expiration date" formControlName ="expDate"
+                              ngbDatepicker     #from="ngbDatepicker" >
+                              <button class="input-group-text" type="button" (click)="from.toggle()">
+                                <i class="feather icon-calendar icon-md text-muted"></i>
+                              </button>
+                            </div>
+                          </div>
+                      
+                         </div>
+                        </div>
+                    </div>  -->
+                    <div class="col-md-3" >
+                        <input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv" />
+                    </div>
+                </div>
+            </form>
+            <!--  -->
+
+               
+
+
+                <div class="table-responsive" style="  max-height: 40rem;    overflow-y: scroll; scroll-behavior: unset; margin-top: 25px; ">
+                    <table id="dataTableExample" class="table">
+                        <thead>
+                            <tr>
+                                <th>SL </th>
+                                <th>ICCID </th>
+                                <th>IMSI </th>
+                                <th>PIN1 </th>
+                                <th>PUK1 </th>
+                                <th>PIN2 </th>
+                                <th>PUK2 </th>
+
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="records.length > 0">
+
+                            <tr *ngFor="let record of records;let i = index;">
+                                <td> <span>{{i+1}}</span> </td>
+                                <td> <span>{{record.ICCID}}</span> </td>
+                                <td> <span>{{record.IMSI}}</span> </td>
+                                <td> <span>{{record.PIN1}}</span> </td>
+                                <td> <span>{{record.PUK1}}</span> </td>
+                                <td> <span>{{record.PIN2}}</span> </td>
+                                <td> <span>{{record.PUK2}}</span> </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            
+                          </tfoot>
+
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center" style="padding-top: 15px;">
+                        <button class="btn btn-primary me-2" (click) = "saveSims()" >Save</button>
+                        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

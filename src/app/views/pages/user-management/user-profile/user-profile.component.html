@@ -1,0 +1,107 @@
+<!-- <p>user-profile works!</p> -->
+<div class="card m-3" style="border-color: darkblue;" *ngIf="!isModalClose">
+    <div class="card-header">
+      
+
+        <h4 style="color:darkblue" >{{selectedRow.roleName}} Profile</h4> 
+   
+     <!-- <h4 *ngIf="userManager.id != 0">Edit User</h4> -->
+   
+     <!-- <h4>Add New User Manager</h4>     -->
+   </div>
+
+
+   <div class="card-body">
+    <div class="row py-1" >
+        <div class="col-md-2">
+        <label style="font-weight: bold;" >  First Name</label> 
+        </div>
+        <div class="col-md-4">
+          {{selectedRow.firstName }}
+        </div>
+        <div class="col-md-2">
+          <label style="font-weight: bold;">  Last Name</label> 
+        </div>
+        <div class="col-md-4">
+          {{selectedRow.lastName}}
+        </div>
+        
+      </div>
+
+    <div class="row py-1" >
+      <div class="col-md-2">
+      <label style="font-weight: bold;" >  Email</label> 
+      </div>
+      <div class="col-md-4">
+        {{selectedRow.email }}
+      </div>
+      <div class="col-md-2">
+        <label style="font-weight: bold;">  Phone Number</label> 
+      </div>
+      <div class="col-md-4">
+        {{selectedRow.phoneNo }}
+      </div>
+      
+    </div>
+  
+    <div class="row  py-1" >
+      <div class="col-md-2">
+      <label style="font-weight: bold;" > User Name</label> 
+      </div>
+      <div class="col-md-4">
+        {{selectedRow.userName }}
+      </div>
+      <div class="col-md-2">
+        <label style="font-weight: bold;">Status</label> 
+      </div>
+      <div class="col-md-4">
+
+        <span *ngIf ="selectedRow.activeStatus == true"> Active</span>
+        <span *ngIf ="selectedRow.activeStatus == false"> Inactive</span>
+        <!-- {{selectedRow.activeStatus}} -->
+      </div>
+      
+    </div>
+  
+    <div class="row  py-1"  >
+      <div class="col-md-2" *ngIf="selectedRow.roleId != 2">
+        <label style="font-weight: bold;">  Master Name</label>
+      </div>
+      <div class="col-md-4" *ngIf="selectedRow.roleId != 2">
+        {{selectedRow.master_UserName }}
+      </div>
+
+      <div class="col-md-2" *ngIf="selectedRow.roleId != 2 && selectedRow.roleId != 3">
+        <label style="font-weight: bold;"> Sub Master Name</label>
+      </div>
+      <div class="col-md-4" *ngIf="selectedRow.roleId != 2 && selectedRow.roleId != 3">
+        {{selectedRow.subMaster_UserName }}
+      </div>
+      
+    </div>
+   
+  
+      
+    <div class="row  py-1" *ngIf="selectedRow.roleId != 2 && selectedRow.roleId != 3 && selectedRow.roleId != 4" >
+      <div class="col-md-2">
+        <label style="font-weight: bold;">  Field Manager Name</label>
+      </div>
+      <div class="col-md-4">
+        {{selectedRow.fieldManager_UserName }}
+      </div>
+    </div>
+    
+   <!-- <h2>Name: {{ selectedRow.firstName }}</h2>
+    <p>Description: {{ selectedRow.roleName }}</p> -->
+   
+  </div>
+        </div>
+ 
+<div class="text-center"  *ngIf="!isModalClose">
+        <!-- <button type="button"   class="btn btn-primary" (click)="viewDistributor(selectedRow)"> <span *ngIf="selectedRow.roleId == 2"> Add Sub Master</span>
+          <span *ngIf="selectedRow.roleId == 3"> Add Field Manager</span>
+          <span *ngIf="selectedRow.roleId == 4"> Add Agent</span></button> -->
+       <button type="button" class="btn btn-secondary"  (click)="goBack()" >Close</button>
+      </div>
+
+      <!-- <app-user-management *ngIf="isModalClose"></app-user-management> -->

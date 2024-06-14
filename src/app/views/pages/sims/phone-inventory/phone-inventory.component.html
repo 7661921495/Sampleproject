@@ -1,0 +1,105 @@
+<!-- Version 1.0 
+     project name :MVNOC ACP RESELLER PLATFORM
+     filename :phone-inventory.component.html
+     path :src\app\views\pages\sims\phone-inventory
+     purpose: to upload devices
+     author: apoorva
+     version history: v1.0 initial version
+ -->
+
+<div class="row"> 
+
+    <div class="col-md-12 stretch-card">
+
+<div class="card" style="border-color: blue;">
+<div class="card-header">
+<h4 style="color:blue"  >Device Inventory</h4>
+</div>
+<div class="card-body">
+<!-- <form class="form-inline" [formGroup]="simForm"> -->
+<div class="row d-flex">
+    <!-- <div class="col-md-4">
+        <input class = "form-control" placeholder="PO#" formControlName = "poNr">
+    </div>
+    <div class="col-md-4 ">
+        <div >
+    <div class="form-group" >
+      
+        
+
+        <div class="mb-3">
+            <div class="input-group">
+              <input class="form-control" placeholder="Expiration date" formControlName ="expDate"
+              ngbDatepicker     #from="ngbDatepicker" >
+              <button class="input-group-text" type="button" (click)="from.toggle()">
+                <i class="feather icon-calendar icon-md text-muted"></i>
+              </button>
+            </div>
+          </div>
+       
+  
+         </div>
+        </div>
+    </div> -->
+    <div class="col-md-4">
+        <input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)"  />
+
+        <!-- <input type="file" #csvReader name="Upl" id="txtFileUpload" (change)="uploadListener($event)" accept=".txt" /> -->
+    </div>
+</div>
+
+<!-- </form> -->
+
+
+
+
+<div class="table-responsive" style="  max-height: 40rem;    overflow-y: scroll; scroll-behavior: unset; margin-top: 25px;">
+    <table id="dataTableExample" class="table">
+        <thead>
+            <tr> 
+                <th>SNO </th>
+                <th>Master RAD IDL </th>
+                <th>PO Number </th>
+                <th>Pallet Number </th>
+                <th>Carton Number </th>
+                <th>SKU Number </th>
+                <th>Carton Qty </th>
+                <th>IMEI 1</th>
+                <th>IMEI 2</th>
+                <th>ICCID</th>
+
+            </tr>
+        </thead>
+        <tbody *ngIf="records.length > 0">
+
+            <tr *ngFor="let record of records;let i = index;">
+                <td> <span>{{i+1}}</span> </td>
+                <td> <span>{{record.MasterRADIDL}}</span> </td>
+                <td> <span>{{record.PalletNumber}}</span> </td>
+                <td> <span>{{record.PONumber}}</span> </td>
+                <td> <span>{{record.CartonNumber1}}</span> </td>
+                <td> <span>{{record.SKUNumber2}}</span> </td>
+                <td> <span>{{record.CartonQt}}</span> </td>
+                <td> <span>{{record.IMEI1}}</span> </td>
+                <td> <span>{{record.IMEI1}}</span> </td>
+                <td> <span>{{record.ICCID}}</span> </td>
+
+            </tr>
+        </tbody>
+        <tfoot>
+            
+          </tfoot>
+
+    </table>
+
+</div>
+<div class="modal-footer">
+    <div class="text-center" style="padding-top:15px;">
+        <button class="btn btn-primary me-2" (click) = "saveDevices()" >Save</button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+    </div>
+</div>
+</div>
+</div> 
+</div>
+</div>

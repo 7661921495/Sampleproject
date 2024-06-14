@@ -1,0 +1,139 @@
+<!-- Version 1.0 
+     project name :MVNOC ADMIN PORTAL
+     filename :add-partner.component.html
+     path :src\app\views\pages\partner\add-partner
+     purpose: to add new partner 
+     author: apoorva
+     version history: v1.0 initial version
+ -->
+  <form [formGroup]="partnerForm" (ngSubmit)="saveNewUser()">
+    <div class="card md-3"  >
+        <div class="card-header"  >
+       
+    
+        
+        <h4  >Add Partner</h4> 
+       
+       </div>
+
+
+    <div class="card-body">
+      
+      
+
+    
+
+                <div class="row mb-3">
+
+                    <div class ="form-group col-md-6">
+                        
+                        <label style="font-weight: bold; ">partner Name</label> 
+                        <span style="color: red;">*</span>
+                        <input  type="text" formControlName="partnerName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.partnerName.errors }"  placeholder="Partner Name" autocomplete="off"/>
+                        <div *ngIf="submitted && f.partnerName.errors" class="invalid-feedback">
+                            <div *ngIf="f.partnerName.errors.required"> is required</div>
+                           
+                        </div>
+                    </div>
+                    <div class ="form-group col-md-6">
+                      
+                        <label style="font-weight: bold; " >Plan code Prefix</label> 
+                        <span style="color: red;">*</span>
+                        <input  type="text" formControlName="planCode" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.planCode.errors }"  placeholder="Plan Code" autocomplete="off"/>
+                        <div *ngIf="submitted && f.planCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.planCode.errors.required"> is required</div>
+                           
+                        </div>
+                    </div>
+                </div>
+                 <div class="row mb-3">
+                    <div class ="form-group col-md-6" >
+                        
+                        <label style="font-weight: bold; ">DBA</label>
+                       
+                        <input  type="text" formControlName="DBA" class="form-control"   placeholder="DBA" autocomplete="off"/>
+                       
+                    </div>
+
+                    <div class ="form-group col-md-6"  >
+                                    
+                        <label style="font-weight: bold; ">User Name</label> 
+                        <span style="color: red;">*</span>
+                        <input  type="text" formControlName="userName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"  placeholder="User Name" autocomplete="off"/>
+                        <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                            <div *ngIf="f.userName.errors.required">User Name is required</div>
+                          
+                      
+                            <div *ngIf="f.userName.errors.pattern">username must contain . or @  character </div>  
+                        </div>
+                        <a >Note: Username can  be 6-30 characters long and takes a-z A-Z 0-9 and . @ characters only.</a>
+                    </div>
+
+                   
+                 
+                 </div>
+                 <div class="row mb-3" >
+                    <div class ="form-group col-md-6">
+                        
+                        <label style="font-weight: bold; " >Contact Name </label> 
+                       
+                        <input    type="tel" class="form-control" formControlName="phoneNo" class="form-control"   placeholder="Phone Number" autocomplete="off" />
+                       
+                    </div>
+                    <div class ="form-group col-md-6"  >
+                                    
+                        <label style="font-weight: bold; ">Contact title </label> 
+                        <span style="color: red;">*</span>
+                        <input   type="text" formControlName="contactTitle" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contactTitle.errors }"  placeholder="Contact Title"  ngx-mask mask="00000000000" autocomplete="off"/>
+                        
+                        
+                    </div>
+                 </div>
+                 
+                 <div class="row mb-3">
+                    <div class ="form-group col-md-6"   >
+                            
+                        <label style="font-weight: bold; " >Contact Email</label> 
+                        <span style="color: red;">*</span>
+                       
+                      
+                        <div *ngIf="submitted && f.contactEmail.errors" class="invalid-feedback">
+                            <div *ngIf="f.contactEmail.errors.required">Status required</div> 
+                        </div>
+                        <!-- <button style="margin-top:5px;"  type="button" class="btn btn-link" (click)="ResetUserPassword(passwordresetmodel)">Reset User Password</button> -->
+                    </div>
+                  
+                    <div class ="form-group col-md-6"   >
+                            
+                        <label style="font-weight: bold; " >Contact Phone No</label> 
+                        <span style="color: red;">*</span>
+                       
+                      
+                        <div *ngIf="submitted && f.contactphoneNo.errors" class="invalid-feedback">
+                            <div *ngIf="f.contactphoneNo.errors.required">Status required</div> 
+                        </div>
+                        <!-- <button style="margin-top:5px;"  type="button" class="btn btn-link" (click)="ResetUserPassword(passwordresetmodel)">Reset User Password</button> -->
+                    </div>
+                   
+                </div>
+             
+            </div>
+        </div>
+    
+
+<div class="text-center md-2" style="padding-top: 15px;" >
+    <button class="btn btn-primary me-2" [disabled] = "partnerForm.invalid && submitted" >Submit</button>
+    <button   class="btn btn-secondary" type="reset" (click)="cancel()">Cancel</button>
+   
+</div>
+
+</form>  
+
+
+
+<!-- 
+  <div *ngIf="isLoading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div> -->

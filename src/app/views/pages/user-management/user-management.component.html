@@ -1,0 +1,265 @@
+<div class="row" *ngIf="!showProviderWindow && !isModalOpen " style="border-color:darkblue;">
+  <div class="col-md-12 grid-margin stretch-card">
+      <div class="card"  style="border-color: blue;"  >
+          <div class="card-header" >
+
+
+              <div class="d-flex align-items-center justify-content-between">
+
+                  <h4 style="border-color:darkblue;">User Details</h4>
+
+                  <button type="button" class="btn btn-primary"  (click)="showProviderWindow = true" >Register </button>
+
+              </div>
+
+         </div>
+
+          <div class="card-body">
+           
+            <div class="d-flex justify-content-between " style="padding-bottom: 10px;  ">
+
+              
+          <div class="btn-group mb-4 mb-md-0" >
+            <form class="search-form" >
+              <div class="input-group">
+                <div class="input-group-text" style="border-color:darkblue;">
+                  <i class="feather icon-search"></i>
+                </div>
+                <input type="text" style="border-color:darkblue;" class="form-control" (keyup)='filterUserData($event)'  id="navbarForm" placeholder="Search">
+              </div>
+            </form>
+            </div>
+            
+              <div class="btn-group mb-4 mb-md-0" style="padding-right: 20px;" role="group" aria-label="Basic example">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group" (click)="showall($event)">
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked >
+                  <label class="btn btn-outline-primary" for="btnradio1"  >All</label>
+                
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" >
+                  <label class="btn btn-outline-primary" for="btnradio2" >Active</label>
+                
+                  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                  <label class="btn btn-outline-primary" for="btnradio3" >Inactive</label>
+                </div>
+
+                
+          </div>
+
+        
+           </div> 
+
+
+        
+
+      
+           <div class="table-responsive" style="margin-top: 25px;">
+            <ngx-datatable  class="bootstrap" 
+            [rows]="rows" [loadingIndicator]="loadingIndicator"
+            [columnMode]="ColumnMode.force" [footerHeight]="50"  [limit]="10" [scrollbarH]="true"
+            
+            >
+            <!-- <ngx-datatable-column name="firstName" [isTreeColumn]="true" [width]="300" [treeLevelIndent]="20">
+              <ng-template ngx-datatable-tree-toggle let-tree="cellContext">
+                <button [disabled]="tree.level!= 3" (click)="tree.onTreeAction()">
+                  <span *ngIf="tree.treeStatus === 'loading'">
+                    ...
+                  </span>
+                  <span *ngIf="tree.treeStatus === 'collapsed'">
+                    ↑
+                  </span>
+                  <span *ngIf="tree.treeStatus === 'expanded'">
+                    ↓
+                  </span>
+                  <span *ngIf="tree.treeStatus === 'disabled'">
+                    ⃠
+                  </span>
+                </button>
+              </ng-template>
+            </ngx-datatable-column> -->
+          
+                
+                 <ngx-datatable-column name="FIRST NAME" prop="firstName"  > 
+                  
+                  
+                </ngx-datatable-column>
+                <!-- <ngx-datatable-column name="Gender"></ngx-datatable-column>
+<ngx-datatable-column name="Age"></ngx-datatable-column>
+<ngx-datatable-column name="City"  prop="address.city"></ngx-datatable-column>
+<ngx-datatable-column name="State"  prop="address.state"></ngx-datatable-column> -->
+<ngx-datatable-column  name="ROLE NAME" prop="roleName"> </ngx-datatable-column>
+<!-- <ngx-datatable-column name="Last Name" prop="lastName"> </ngx-datatable-column> -->
+                <ngx-datatable-column name="USER NAME" prop="userName"> 
+
+                  <ng-template    let-rowIndex="rowIndex" let-value="value" let-row="row" ngx-datatable-cell-template>
+                    <button type="button"   class="btn btn-link p-0" placement="left" ngbTooltip="Profile" (click)="onRowClick(row)" >
+                      {{row.userName}}
+                    </button>       
+                   
+                     
+            </ng-template>
+                </ngx-datatable-column>
+                <!-- <ngx-datatable-column name="EMAIL" prop="email" [width]="200"> </ngx-datatable-column> 
+                <ngx-datatable-column name="PHONE NUMBER" prop="phoneNo"> </ngx-datatable-column>
+              
+                <ngx-datatable-column name="MASTER NAME" prop="master_UserName"> </ngx-datatable-column> 
+                <ngx-datatable-column name="SUB MASTER NAME" prop="subMaster_UserName"> </ngx-datatable-column> 
+                <ngx-datatable-column name="FIELD MANAGER NAME" prop="fieldManager_UserName"> </ngx-datatable-column>  -->
+
+                <ngx-datatable-column name="STATUS"  prop="activeStatus" >
+                  <ng-template    let-rowIndex="rowIndex" let-value="value" let-row="row" ngx-datatable-cell-template>
+                             
+                          <div *ngIf='value==true'>        
+                            Active       
+                          </div>         
+                          <div *ngIf='value==false'>Inactive</div>        
+                           
+                  </ng-template>
+                   </ngx-datatable-column>
+                <ngx-datatable-column name="ACTIONS" >
+                  <ng-template ngx-datatable-cell-template let-rowIndex="rowIndex" let-value="value" let-row="row">
+                    <button type="button" class="btn btn-blue p-0"
+                    (click)="edit(row)"> <i class="feather icon-edit-2"  placement="left" ngbTooltip="Edit"></i></button>
+                    <!-- <button type="button" class="btn btn-blue" (click)="cancelModal(canceldistributormodel,row);"><i
+                      class="feather icon-trash"  placement="left" ngbTooltip="Delete"></i></button> -->
+                    
+
+          
+
+
+                  </ng-template>
+              </ngx-datatable-column>
+               
+            </ngx-datatable>
+        </div>
+          </div>
+      </div>
+     
+  </div>
+</div>
+<ng-template #passwordresetmodel let-modal>
+<div class="modal-header" >
+  <h5 class="align-items-center"   > Note : Please copy the Username and Password to share the user </h5>  
+<button type="button" class="btn-close" (click)="modal.close('by: close icon')" data-bs-dismiss="modal" aria-label="btn-close">
+
+</button> 
+</div>  
+<div class="modal-body">
+
+
+<div class="text-center">
+
+ <div class="row">
+     <div class="col-sm-6">
+         <label class="text-muted mr-4" style="font-weight: bold;">Username</label>
+     </div>
+     <div class="col-sm-6">
+
+      <label   class="text-body mr-4" style="font-weight: bold;">{{pwd_Data?.userName}}</label> 
+      <a  ngxClipboard type="button" class="btn btn-blue"  [cbContent]="pwd_Data?.userName"><i class="feather icon-copy" placement="left" ngbTooltip="copy to clipboard" ></i></a>
+      <!-- <button  ngxClipboard type="button" class="btn btn-blue text-body mb-4"  [cbContent]="[pwd_Data?.userName]"><i class="feather icon-copy" placement="left" ngbTooltip="copy to clipboard" ></i> {{pwd_Data?.userName}}</button> -->
+         <!-- <h6 ngxClipboard placement="left" ngbTooltip="copy to clipboard" class="btn btn-blue text-body mb-4" [cbContent]="[pwd_Data?.userName]">{{pwd_Data?.userName}}</h6> -->
+     </div>
+    
+ </div>
+ <div class="row" >
+     <div class="col-sm-6">
+         <label class="text-muted mr-4" style="font-weight: bold;">Password</label>
+     </div>
+     <div class="col-sm-6">
+      <label   class="text-body mr-4" style="font-weight: bold;">{{pwd_Data?.password}}</label> 
+      <a  ngxClipboard type="button" class="btn btn-blue"  [cbContent]="pwd_Data?.password"><i class="feather icon-copy" placement="left" ngbTooltip="copy to clipboard" ></i></a>
+      <!-- <h6 ngxClipboard placement="left" ngbTooltip="copy to clipboard" class="btn btn-blue text-body mb-4" [cbContent]="[pwd_Data?.password]">{{pwd_Data?.password}}</h6>  -->
+     </div>
+     
+ </div>
+<!-- <div #container> 
+        <button ngxClipboard [cbContent]="'CTC Inline Text.'" [container]="container"></button>
+      </div> -->
+    
+<!-- <a ngxClipboard placement="left" ngbTooltip="copy to clipboard" class="text-body mb-2 mt-2" [cbContent]="[pwd_Data]"></a>  -->
+</div>
+</div> 
+<div class="modal-footer"> 
+
+<button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
+
+</div> 
+</ng-template>
+
+
+<ng-template #profiledetails let-modal>
+<div class="modal-header">
+  <div class="btn-group mb-4 mb-md-0" style="padding-right: 20px;" role="group" aria-label="Basic example">
+  <h4  style="border-color:darkblue;" > {{selectedRow.roleName}} Profile </h4> 
+  </div> 
+ 
+
+<button type="button" class="btn-close" (click)="modal.close('by: close icon')" data-bs-dismiss="modal" aria-label="btn-close">
+</button>
+</div>  
+<div class="modal-body">
+
+<div class="row" >
+  <div class="col-sm-6">
+  <label style="font-weight: bold;">  Email</label> 
+  </div>
+  <div class="col-sm-6">
+    {{selectedRow.email }}
+  </div>
+
+  
+</div>
+
+<div class="row" >
+  <div class="col-sm-6">
+    <label style="font-weight: bold;">  Phone Number</label> 
+  </div>
+  <div class="col-sm-6">
+    {{selectedRow.phoneNo }}
+  </div>
+</div>
+
+<div class="row" *ngIf="selectedRow.roleId != 2" >
+  <div class="col-sm-6">
+    <label style="font-weight: bold;">  Master Name</label>
+  </div>
+  <div class="col-sm-6">
+    {{selectedRow.master_UserName }}
+  </div>
+</div>
+<div class="row" *ngIf="selectedRow.roleId != 2 && selectedRow.roleId != 3" >
+  <div class="col-sm-6">
+    <label style="font-weight: bold;"> Sub Master Name</label>
+  </div>
+  <div class="col-sm-6">
+    {{selectedRow.subMaster_UserName }}
+  </div>
+</div>
+
+  
+<div class="row" *ngIf="selectedRow.roleId != 2 && selectedRow.roleId != 3 && selectedRow.roleId != 4" >
+  <div class="col-sm-6">
+    <label style="font-weight: bold;">  Field Manager Name</label>
+  </div>
+  <div class="col-sm-6">
+    {{selectedRow.fieldManager_UserName }}
+  </div>
+</div>
+
+<!-- <h2>Name: {{ selectedRow.firstName }}</h2>
+<p>Description: {{ selectedRow.roleName }}</p> -->
+
+</div>
+<div class="modal-footer"> 
+
+<button type="button" class="btn btn-secondary" (click)="modal.close('by: close button')">Close</button>
+
+</div> 
+</ng-template>
+<app-add-user *ngIf="showProviderWindow"   (onFormGroupChange)="onFormGroupChangeEvent($event)" (addNewUserEvent)="saveNewUser($event,pwdModal(passwordresetmodel))" (cancelEvent)="hideProviderWindow();inituserManager();" [platformUser]="platformUser"   ></app-add-user> 
+<app-user-profile *ngIf="isModalOpen"  [selectedRow]="selectedRow"      ></app-user-profile>
+<div *ngIf="isLoading" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>

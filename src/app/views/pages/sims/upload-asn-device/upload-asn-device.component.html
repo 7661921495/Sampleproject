@@ -1,0 +1,87 @@
+<div class="row"> 
+
+    <div class="col-md-12 stretch-card">
+
+<div class="card" style="border-color: blue;">
+<div class="card-header">
+<h4 >Device Inventory</h4>
+</div>
+<div class="card-body">
+<form class="form-inline" [formGroup]="simForm">
+<div class="row d-flex">
+   
+    <!-- <div class="col-md-4 ">
+        <div >
+    <div class="form-group" >
+ 
+        
+        <input class="form-control" placeholder="Expiration date" 
+        ngbDatepicker   #from="ngbDatepicker"  formControlName ="expDate">
+        <div class="input-group-append">
+              <button class="btn btn-outline-light btn-icon" type="button"  (click)="from.toggle()" >
+                <i class="feather icon-calendar"></i>
+          </button>
+        </div>
+  
+         </div>
+        </div>
+    </div> -->
+    <div class="col-md-6">
+        <input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv" />
+    </div>
+</div>
+
+</form>
+
+
+
+
+<div class="table-responsive" style="  max-height: 40rem;    overflow-y: scroll; scroll-behavior: unset;">
+    <table id="dataTableExample" class="table">
+        <thead>
+            <tr> <th>SNo </th>
+                <th>Master RAD IDL </th>
+                <th>PO Number </th>
+                <th>Pallet Number </th>
+                <th>Carton Number </th>
+                <th>SKU Number </th>
+                <th>Carton Qty </th>
+                <th>IMEI 1</th>
+                <th>IMEI 2</th>
+                <th>ICCID</th>
+
+            </tr>
+        </thead>
+        <tbody *ngIf="records.length > 0">
+
+            <tr *ngFor="let record of records;let i = index;">
+                <td> <span>{{i+1}}</span> </td>
+                <td> <span>{{record.MasterRADIDL}}</span> </td>
+                <td> <span>{{record.PalletNumber}}</span> </td>
+                <td> <span>{{record.PONumber}}</span> </td>
+                <td> <span>{{record.CartonNumber1}}</span> </td>
+                <td> <span>{{record.SKUNumber2}}</span> </td>
+                <td> <span>{{record.CartonQt}}</span> </td>
+                <td> <span>{{record.IMEI1}}</span> </td>
+                <td> <span>{{record.IMEI1}}</span> </td>
+                <td> <span>{{record.ICCID}}</span> </td>
+
+            </tr>
+        </tbody>
+        <tfoot>
+            
+          </tfoot>
+
+    </table>
+
+</div>
+<div class="modal-footer">
+    <div class="text-center">
+        <button class="btn btn-primary me-2" (click) = "saveSims()" >Save</button>
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>

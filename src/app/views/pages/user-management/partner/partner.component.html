@@ -1,0 +1,91 @@
+<!-- Version 1.0 
+     project name :MVNOC ADMIN PORTAL
+     filename :partner.component.html
+     path :src\app\views\pages\user-management
+     purpose: to add the partner 
+     author: apoorva
+     version history: v1.0 initial version
+ -->
+ <!-- <div class="row" *ngIf="!showProviderWindow" >
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card"    >
+            <div class="card-header" >
+
+
+                <div class="d-flex align-items-center justify-content-between">
+
+                    <h4 >Partner Details</h4>
+
+                    <button type="button" class="btn btn-primary"  (click)="showProviderWindow = true" > Add Partner</button>
+
+                </div>
+
+           </div>
+
+            <div class="card-body">
+             
+              <div class="d-flex justify-content-between " style="padding-bottom: 10px;  ">
+
+                
+            <div class="btn-group mb-4 mb-md-0" >
+              <form class="search-form" >
+                <div class="input-group">
+                  <div class="input-group-text" >
+                    <i class="feather icon-search"></i>
+                  </div>
+                  <input type="text"  class="form-control" (keyup)='filterUserData($event)'  id="navbarForm" placeholder="Search">
+                </div>
+              </form>
+              </div>
+              
+                <div class="btn-group mb-4 mb-md-0" style="padding-right: 20px;" role="group" aria-label="Basic example">
+                  <div class="btn-group" role="group" aria-label="Basic radio toggle button group" (click)="showall($event)">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked >
+                    <label class="btn btn-outline-primary" for="btnradio1"  >All</label>
+                  
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" >
+                    <label class="btn btn-outline-primary" for="btnradio2" >Active</label>
+                  
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio3" >Inactive</label>
+                  </div>
+
+                  
+            </div>
+
+          
+             </div> 
+
+
+          
+
+        
+             <div class="table-responsive">
+              
+      
+      
+                <ngx-datatable class="bootstrap" [rows]="rows" [loadingIndicator]="loadingIndicator" id = "excel-table"
+                [columnMode]="ColumnMode.force" [footerHeight]="50" [limit]="10" rowHeight="auto" [scrollbarH]="true">
+      
+              
+                <ngx-datatable-column name="Partner Name" prop="pO_Number"> </ngx-datatable-column>
+                <ngx-datatable-column name="ICCID" prop="masteR_RAD_ID"> </ngx-datatable-column>
+                <ngx-datatable-column name="MSISDN" prop="status"> </ngx-datatable-column>
+           
+      
+                <ngx-datatable-column name="Partner Transaction ID" prop="pallet_Number"> </ngx-datatable-column>
+                <ngx-datatable-column name="Process Start Date" prop="carton_Number"> </ngx-datatable-column> 
+               <ngx-datatable-column name="Process End Date" prop="skU_Number">  </ngx-datatable-column>
+                <ngx-datatable-column name="Validation end time" prop="carton_Qty"> </ngx-datatable-column>
+                <ngx-datatable-column name="Success" prop="imeI_1"> </ngx-datatable-column>
+                <ngx-datatable-column name="Internal Error" prop="imeI_2"> </ngx-datatable-column> 
+              
+                
+              </ngx-datatable>
+              </div>
+            </div>
+        </div>
+       
+    </div>
+</div>
+<app-add-partner *ngIf="showProviderWindow" > </app-add-partner> -->

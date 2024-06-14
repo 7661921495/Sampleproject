@@ -1,0 +1,92 @@
+<!-- Version 1.0 
+     project name :MVNOC ACP RESELLER PLATFORM
+     filename :esim-activation-codes.component.html
+     path :src\app\views\pages\sims\esim-activation-codes
+     purpose: to upload esim activation codes
+     author: apoorva
+     version history: v1.0 initial version
+ -->
+
+
+                <div class="row"> 
+
+                    <div class="col-md-12 stretch-card">
+
+        <div class="card" style="border-color: blue;">
+            <div class="card-header">
+                <h4 style="color:blue">eSIM Activation Codes</h4>
+            </div>
+            <div class="card-body">
+               
+                <!-- <form class="form-inline" [formGroup]="simForm"> -->
+                    <div class="row d-flex">
+                        <!-- <div class="col-md-4">
+                            <input class = "form-control" placeholder="PO#" formControlName = "poNr">
+                        </div>
+                        <div class="col-md-4 ">
+                            <div >
+                        <div class="form-group" >
+                          
+                            
+                    
+                            <div class="mb-3">
+                                <div class="input-group">
+                                  <input class="form-control" placeholder="Expiration date" formControlName ="expDate"
+                                  ngbDatepicker     #from="ngbDatepicker" >
+                                  <button class="input-group-text" type="button" (click)="from.toggle()">
+                                    <i class="feather icon-calendar icon-md text-muted"></i>
+                                  </button>
+                                </div>
+                              </div>
+                           
+                      
+                             </div>
+                            </div>
+                        </div> -->
+                        <div class="col-md-4">
+                            <input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)"  />
+                    
+                            <!-- <input type="file" #csvReader name="Upl" id="txtFileUpload" (change)="uploadListener($event)" accept=".txt" /> -->
+                        </div>
+                    </div>
+                    
+                    <!-- </form> -->
+               
+
+
+                <div class="table-responsive" style="  max-height: 40rem;    overflow-y: scroll; scroll-behavior: unset; margin-top: 25px">
+                    <table id="dataTableExample" class="table">
+                        <thead>
+                            <tr>
+                                <th>SL </th>
+                                <th>ICCID </th>
+                                <th>Activation Code</th>
+                             
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="records.length > 0">
+
+                            <tr *ngFor="let record of records;let i = index;">
+                                <td> <span>{{i+1}}</span> </td>
+                                <td> <span>{{record.ICCID}}</span> </td>
+                                <td> <span>{{record.ActivationCode}}</span> </td>
+                           
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="text-center" style="padding-top: 15px;">
+                        <button class="btn btn-primary me-2" (click) = "saveSims()" >Save</button>
+                        <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

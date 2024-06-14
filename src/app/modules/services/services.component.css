@@ -1,0 +1,22 @@
+.services-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .service {
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .service h3 {
+    margin: 0 0 8px 0;
+    color: #007bff;
+  }
+  
+  .service p {
+    margin: 0;
+    color: #666;
+  }
